@@ -1,0 +1,31 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: 
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Inject Mapbox token
+        run: |
+          sed -i "s/\${PUBLIC_TOKEN}/${{ secrets.PUBLIC_TOKEN }}/g" script.js
+          if grep -q '\${PUBLIC_TOKEN}' script.js; then
+            echo "Error: Token placeholder was not replaced"
+            exit 1
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
