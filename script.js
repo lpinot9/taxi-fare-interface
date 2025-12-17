@@ -1,11 +1,9 @@
-let taxiFareApiUrl = 'http://localhost:8001/predict'; // replace with your API endpoint
+let taxiFareApiUrl = 'https://taxifare.lewagon.ai/predict';
 const centralCoordinates = [-74.00597, 40.71427]; // starting position [lng, lat]
 
-if (window.location.href.includes('https://taxifare.lewagon.com')) {
-  taxiFareApiUrl = 'https://taxifare.lewagon.ai/predict';
-}
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJja2YzcmcyNDkwNXVpMnRtZGwxb2MzNWtvIn0.69leM_6Roh26Ju7Lqb2pwQ';
+
+mapboxgl.accessToken = 'pk.eyJ1IjoibHBpbm90IiwiYSI6ImNtamFiZWt6NTAyZ3ozZnNibWF4aDZxa2cifQ.prFlgKAXs_QSSiXNyu0OBQ';
 
 const displayMap = (start, stop) => {
   const map = new mapboxgl.Map({
@@ -225,3 +223,4 @@ pickupAutocomplete();
 dropoffAutocomplete();
 initFlatpickr();
 predict();
+

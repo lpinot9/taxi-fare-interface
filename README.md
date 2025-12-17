@@ -1,66 +1,69 @@
-# NY Taxi Fare prediction interface
+# NY Taxi Fare Prediction Interface
 
-![](images/snapshot.png)
+A web interface for predicting taxi fares in New York City using machine learning.
 
-## Setup
+## Features
 
-The interface uses 3 APIs:
+- Interactive map powered by Mapbox
+- Location autocomplete for pickup and dropoff
+- Real-time fare prediction
+- Visual route display on the map
 
-- The NY Taxi Fare prediction API
-- The [MapBox Maps API](https://docs.mapbox.com/mapbox-gl-js/api/) to display a map and address autocomplete
-- The [MapBox Directions API](https://docs.mapbox.com/api/navigation/) to display the route on the map
+## Setup Instructions
 
-These APIs require credentials and the following steps will guide you to get them and set the interface with.
+### Configuring the Mapbox Token
 
-### NY Taxi Fare prediction API
+This application uses Mapbox for mapping functionality. To keep the Mapbox access token secure, it needs to be configured as a GitHub Secret.
 
-Update the `script.js` to get prediction from your own API hosted on GCP (make sure to use `https`, not `http`):
+#### Steps to Configure:
 
-```js
-// script.js
+1. **Get a Mapbox Access Token**
+   - Sign up or log in at [Mapbox](https://www.mapbox.com/)
+   - Navigate to your [Account page](https://account.mapbox.com/)
+   - Copy your public access token (starts with `pk.`)
 
-const taxiFareApiUrl = 'https://YOUR_API_URL/predict';
-```
+2. **Add the Token to GitHub Secrets**
+   - Go to your GitHub repository
+   - Click on **Settings** → **Secrets and variables** → **Actions**
+   - Click **New repository secret**
+   - Name: `PUBLIC_TOKEN`
+   - Value: Paste your Mapbox access token
+   - Click **Add secret**
 
-Hint: alternatively, you may use this Le Wagon Prediction API if you do not have one in production:
+3. **Deploy**
+   - Once the secret is configured, push changes to the `master` branch
+   - GitHub Actions will automatically deploy the site to GitHub Pages
+   - The workflow will inject the token during deployment
+   - The site will be available on the `gh-pages` branch
 
-`https://taxifare.lewagon.ai/predict`
+## Deployment
 
-_Note: the following setup steps are optional as you can use Mapbox credentials given by Le Wagon_
+The site is automatically deployed to GitHub Pages when changes are pushed to the `master` branch. The deployment workflow:
 
-### MapBox Maps and Directions APIs (optional)
+1. Checks out the code
+2. Injects the Mapbox token from GitHub Secrets
+3. Deploys to the `gh-pages` branch
 
-- Go to [MapBox](https://www.mapbox.com/) and create an account
-- Go to your [Account](https://account.mapbox.com/) and grab your `Access Token` then set it into the `script.js`
+## Development
 
-```js
-//...
-mapboxgl.accessToken = 'YOUR_MAPBOX_API_ACCESS_TOKEN';
-````
+To run this locally for development:
 
-## Local development
+1. Clone the repository
+2. Create a local copy of `script.js` (e.g., `script.local.js`) and replace `${PUBLIC_TOKEN}` with your own Mapbox token
+3. Update the script reference in `index.html` to point to your local file
+4. Open `index.html` in a web browser
+5. **Important:** Make sure `script.local.js` is not tracked by git (add it to `.gitignore` if needed)
 
-To check your setup, run the interface locally with:
-```bash
-python -m http.server 5001
-```
+Alternatively, you can use a local web server and inject the token via environment variables.
 
-Then go to [http://localhost:5001](http://localhost:5001)
+## Technologies Used
 
-## Deploy on GitHub Pages
+- HTML/CSS/JavaScript
+- [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/) - Interactive maps
+- [Mapbox Geocoder](https://github.com/mapbox/mapbox-gl-geocoder) - Location search
+- [Bootstrap](https://getbootstrap.com/) - UI framework
+- [Flatpickr](https://flatpickr.js.org/) - Date/time picker
 
-Your app is ready to go live!
+## License
 
-Create a new branch `gh-pages`:
-
-```bash
-git checkout -b gh-pages
-```
-
-Deploy your app on GitHub:
-
-```bash
-git push origin gh-pages
-```
-
-Your app will be visible shortly at `https://YOUR_GITHUB_NICKNAME.github.io/taxi-fare-interface`.
+This project was created as part of [Le Wagon](https://www.lewagon.com/) coding bootcamp.
