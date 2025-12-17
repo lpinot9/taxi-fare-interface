@@ -49,9 +49,12 @@ The site is automatically deployed to GitHub Pages when changes are pushed to th
 To run this locally for development:
 
 1. Clone the repository
-2. Replace `${PUBLIC_TOKEN}` in `script.js` with your own Mapbox token (temporarily, for local testing only)
-3. Open `index.html` in a web browser
-4. **Important:** Do not commit your token to the repository!
+2. Create a local copy of `script.js` (e.g., `script.local.js`) and replace `${PUBLIC_TOKEN}` with your own Mapbox token
+3. Update the script reference in `index.html` to point to your local file
+4. Open `index.html` in a web browser
+5. **Important:** Make sure `script.local.js` is not tracked by git (add it to `.gitignore` if needed)
+
+Alternatively, you can use a local web server and inject the token via environment variables.
 
 ## Technologies Used
 
