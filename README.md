@@ -11,6 +11,14 @@ A web interface for predicting taxi fares in New York City using machine learnin
 
 
 
+## Deployment
+
+The site is automatically deployed to GitHub Pages when changes are pushed to the `master` branch. The deployment workflow:
+
+1. Checks out the code
+2. Injects the Mapbox token from GitHub Secrets
+3. Deploys to the `gh-pages` branch
+
 ## Development
 
 To run this locally for development:
