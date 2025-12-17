@@ -3,7 +3,7 @@ const centralCoordinates = [-74.00597, 40.71427]; // starting position [lng, lat
 
 
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jva3JvYiIsImEiOiJja2YzcmcyNDkwNXVpMnRtZGwxb2MzNWtvIn0.69leM_6Roh26Ju7Lqb2pwQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoibHBpbm90IiwiYSI6ImNtamE5ZnlxYjAzMmgzZnFxaWdxc2Z1czkifQ.oAuD_9QC7VVn96uIKOsugg';
 
 const displayMap = (start, stop) => {
   const map = new mapboxgl.Map({
